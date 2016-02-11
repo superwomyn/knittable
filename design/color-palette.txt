@@ -1,0 +1,5 @@
+primary (coral): #ee2f44
+secondary (light blue): #caeaf2
+secondary (navy blue): #0c2f4f
+tertiary (medium blue): #2980B9
+neutral (light gray): #F5F5F5

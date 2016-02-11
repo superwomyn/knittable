@@ -1,3 +1,3 @@
-require './hi'
+require './app'
 
 run Sinatra::Application

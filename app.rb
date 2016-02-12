@@ -10,7 +10,7 @@ post '/pattern' do
   output = ''
   stitch = 'knit'
   color = 'white'
-  count = 0
+  stitch_count = 0
   previous_cell = 1
   row_count = 1
   image = ''
@@ -18,7 +18,7 @@ post '/pattern' do
     columns = row.to_a
     columns.each do |cell|
       if cell != previous_cell
-        output = output + "<li>Row #{row_count}: #{stitch} #{count}</li>" unless count == 0
+        output = output + "<li>Row #{row_count}: #{stitch} #{stitch_count}</li>" unless stitch_count == 0
         if stitch == 'knit'
           color = 'blue'
           stitch = 'purl'
@@ -26,15 +26,15 @@ post '/pattern' do
           color = 'white'
           stitch = 'knit'
         end
-        count = 0
+        stitch_count = 0
         previous_cell = cell
       end
       image = image + "<div style='width:10px; height: 10px; display: inline-block; background-color: #{color};'>&nbsp;</div>"
-      count += 1
+      stitch_count += 1
     end
-    output = output + "<li>Row #{row_count}: #{stitch} #{count}</li>" unless count == 0
+    output = output + "<li>Row #{row_count}: #{stitch} #{stitch_count}</li>" unless stitch_count == 0
     stitch = 'knit'
-    count = 0
+    stitch_count = 0
     previous_cell = 1
     row_count = row_count + 1
   end

@@ -5,7 +5,7 @@
         <% row_number = 1 %>
         <% results.each do |row| %>
         <p class="row">
-            <input type="checkbox" class="row-checkbox" id="row-complete-<%= row_number %>" />
+            <input type="checkbox" class="row-checkbox" id="row-complete-<%= row_number %>" data-row="<%= row_number %>" />
             <label for="row-complete-<%= row_number %>"></label>
             <span class="row-number">Row <%= row_number %>:</span>
             <% row.each do |group| %>

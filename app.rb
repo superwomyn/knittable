@@ -25,6 +25,7 @@ post '/pattern' do
     columns = row.to_a
     column_count = columns.length
     columns.each do |cell|
+      # if we're changing from one stitch to another
       if cell != previous_cell
         if results[row_count].nil?
           results[row_count] = [{row: row_count, stitch: stitch, stitch_count: stitch_count}] unless stitch_count == 0
@@ -42,6 +43,7 @@ post '/pattern' do
         stitch_count = 0
         previous_cell = cell
       end
+
       image = image + "<div style='width:10px; height: 10px; display: inline-block; background-color: #{color};'>&nbsp;</div>"
       stitch_count += 1
     end
@@ -54,8 +56,20 @@ post '/pattern' do
     stitch = 'knit'
     stitch_count = 0
     previous_cell = 1
+
+    if row_count.odd?
+      #reverse array
+      results[row_count].reverse!
+      results[row_count].each do |group|
+        if group[:stitch] == 'knit'
+          group[:stitch] = 'purl'
+        else
+          group[:stitch] = 'knit'
+        end
+      end
+    end
     row_count = row_count + 1
   end
-  "<div style='max-width:#{column_count * 10}px;'>#{image}</div><ul>#{output}</ul>"
-  #results.join(' ')
+  #"<div style='max-width:#{column_count * 10}px;'>#{image}</div><ul>#{output}</ul>"
+  "<pre>#{results.join('<br>')}</pre>"
 end

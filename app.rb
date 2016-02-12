@@ -68,16 +68,6 @@ post '/pattern' do
     end
     row_count += 1
   end
-  # "<div style='max-width:#{column_count * 10}px;'>#{image}</div><ul>#{output}</ul>"
-  # "<pre>#{results.join('<br>')}</pre>"
-  output = "<ul>"
-  row_countz = 0
-  results.each do |row|
-    output += "<li>Row #{row_countz}<ul><li>#{row.join('</li><li>')}</li></ul></li>"
-    row_countz += 1
-  end
-  output += "</ul>"
-  # "<div style='max-width:#{column_count * 10}px;'>#{image}</div><br>#{output}"
 
   erb :pattern, locals: { results: results, image: image }
 end

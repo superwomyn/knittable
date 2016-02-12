@@ -1,16 +1,19 @@
-Congratulations! Here's your pattern! Get knittin'!
-<%
-    output = "<ul>"
-    row_countz = 0
-    results.each do |row|
-    output += "<li>Row #{row_countz}<ul>"
-        row.each do |group|
-            output += "<li><input type='checkbox'> #{group[:stitch]} #{group[:stitch_count]}</li>"
-        end
-    output += "</ul></li>"
-    row_countz = row_countz + 1
-    end
-    output += "</ul>"
-%>
-<%= output %>
-  
+<section class="pattern">
+    <h2>Congratulations!</h2>
+    <p>Here's your pattern. Get knittin'!</p>
+    <div class="pattern-container">
+        <% row_number = 1 %>
+        <% results.each do |row| %>
+        <p class="row">
+            <input type="checkbox" class="row-checkbox" id="row-complete-<%= row_number %>" />
+            <label for="row-complete-<%= row_number %>"></label>
+            <span class="row-number">Row <%= row_number %>:</span>
+            <% row.each do |group| %>
+            <span class="stitch"><%= group[:stitch] %> <%= group[:stitch_count] %></span>
+            <% end %>
+        </p>
+        <% row_number += 1 %>
+        <% end %>
+    </div>
+    <a href="/" class="button">Generate a new pattern</a>
+</section>

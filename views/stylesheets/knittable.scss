@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600|Kreon');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700|Kreon');
 
 @import 'bourbon/bourbon';
 
@@ -8,6 +8,7 @@
 @import 'footer';
 @import 'buttons';
 @import 'form';
+@import 'pattern';
 
 html {
     font-size: 62.5%;
@@ -47,6 +48,12 @@ main {
     background-image: url('/images/stitches.png');
     background-repeat: repeat-x;
     background-position: center bottom;
+    padding-bottom: 350px;
+}
+
+section {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 h1, h2, h3, h4, h5, h6 {

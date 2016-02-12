@@ -1,0 +1,16 @@
+Congratulations! Here's your pattern! Get knittin'!
+<%
+    output = "<ul>"
+    row_countz = 0
+    results.each do |row|
+    output += "<li>Row #{row_countz}<ul>"
+        row.each do |group|
+            output += "<li><input type='checkbox'> #{group[:stitch]} #{group[:stitch_count]}</li>"
+        end
+    output += "</ul></li>"
+    row_countz = row_countz + 1
+    end
+    output += "</ul>"
+%>
+<%= output %>
+  

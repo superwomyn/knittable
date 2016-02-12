@@ -77,5 +77,7 @@ post '/pattern' do
     row_countz = row_countz + 1
   end
   output += "</ul>"
-  "<div style='max-width:#{column_count * 10}px;'>#{image}</div><br>#{output}"
+  #"<div style='max-width:#{column_count * 10}px;'>#{image}</div><br>#{output}"
+
+  erb :pattern, locals: {results: results, image: image}
 end

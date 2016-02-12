@@ -6,4 +6,4 @@ gem 'sinatra'
 
 gem 'sinatra-contrib', :group => :development
 
-
+gem 'sass'

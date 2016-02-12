@@ -7,4 +7,7 @@ gem 'sinatra'
 gem 'sass'
 gem 'bourbon'
 
-gem 'sinatra-contrib', :group => :development
+group :test, :development do
+  gem 'sinatra-contrib'
+  gem 'rspec'
+end

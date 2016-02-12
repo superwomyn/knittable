@@ -24,7 +24,7 @@ RSpec.describe Pattern do
       it 'returns the correct results array' do
         pattern = Pattern.new
         pattern.data = [['']]
-        expect(pattern.generate).to eq [['']] # TODO FIXME this is actually wrong
+        expect(pattern.generate).to eq [[{:row=>0, :stitch=>"knit", :stitch_count=>1}]]
       end
     end
 
@@ -32,7 +32,15 @@ RSpec.describe Pattern do
       it 'returns the correct results array' do
         pattern = Pattern.new
         pattern.data = [['1']]
-        expect(pattern.generate).to eq [['1']]
+        expect(pattern.generate).to eq [[{:row=>0, :stitch=>"knit", :stitch_count=>1}]]
+      end
+    end
+
+    context 'when the data is one row of identical stitches' do
+      it 'returns the correct results array' do
+        pattern = Pattern.new
+        pattern.data = [%w(1, 1, 1)]
+        expect(pattern.generate).to eq [[{:row=>0, :stitch=>"knit", :stitch_count=>3}]]
       end
     end
 

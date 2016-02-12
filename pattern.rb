@@ -1,7 +1,7 @@
 class Pattern
 
   attr_accessor :csv_path
-  attr_accessor :data
+  attr_accessor :data # multidimensional array of 1's and 0's
 
   def generate
     raise 'Path to CSV file or csv string is required' if @csv_path.nil? && @data.nil?
@@ -12,16 +12,16 @@ class Pattern
     stitch = 'knit'
     color = 'white'
     stitch_count = 0
-    previous_cell = 1
+    previous_cell = nil
     row_count = 0
-    image = ''
+    # image = ''
     column_count = 0
     @data.each do |row|
       # columns = row.to_a
       column_count = row.length
       row.each do |cell|
         # if we're changing from one stitch to another
-        if cell != previous_cell
+        if cell != previous_cell && row_count != 0
           if results[row_count].nil?
             results[row_count] = [{row: row_count, stitch: stitch, stitch_count: stitch_count}] unless stitch_count == 0
           else
@@ -38,7 +38,7 @@ class Pattern
           previous_cell = cell
         end
 
-        image = image + "<div style='width:10px; height: 10px; display: inline-block; background-color: #{color};'>&nbsp;</div>"
+        # image = image + "<div style='width:10px; height: 10px; display: inline-block; background-color: #{color};'>&nbsp;</div>"
         stitch_count += 1
       end
       if results[row_count].nil?
@@ -63,5 +63,6 @@ class Pattern
       end
       row_count = row_count + 1
     end
+    results
   end
 end

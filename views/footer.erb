@@ -18,6 +18,10 @@
             this.ui.checkbox.click(function(e){
                 sessionStorage.setItem('checkbox-row-' + $(e.currentTarget).data('row'), $(this).is(':checked'));
             });
+        },
+
+        clearLocalStorage: function() {
+            sessionStorage.clear();
         }
     };
 

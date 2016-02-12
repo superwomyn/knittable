@@ -1,9 +1,14 @@
 require 'sinatra'
+require 'sass'
 require 'sinatra/reloader' if development?
 require 'csv'
 
+get '/stylesheets/:stylesheet.css' do |stylesheet|
+  scss :"stylesheets/#{stylesheet}"
+end
+
 get '/' do
-  "Welcome to Knittable<br><br><form action='/pattern' method='post'><input type='file' name='csv_path'/><br><input type='submit'/></form>"
+  erb :index
 end
 
 post '/pattern' do
@@ -14,8 +19,10 @@ post '/pattern' do
   previous_cell = 1
   row_count = 1
   image = ''
-  CSV.foreach(params[:csv_path]) do |row|
+  column_count = 0
+  CSV.foreach("csv/#{params[:csv_path]}") do |row|
     columns = row.to_a
+    column_count = columns.length
     columns.each do |cell|
       if cell != previous_cell
         output = output + "<li>Row #{row_count}: #{stitch} #{stitch_count}</li>" unless stitch_count == 0
@@ -38,5 +45,5 @@ post '/pattern' do
     previous_cell = 1
     row_count = row_count + 1
   end
-  "<div style='max-width:400px'>#{image}</div><ul>#{output}</ul>"
+  "<div style='max-width:#{column_count * 10}px;'>#{image}</div><ul>#{output}</ul>"
 end

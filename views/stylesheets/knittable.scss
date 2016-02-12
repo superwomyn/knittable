@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600|Kreon');
+
+@import 'bourbon/bourbon';
+
+@import 'normalize';
+@import 'definitions';
+@import 'header';
+@import 'footer';
+@import 'buttons';
+@import 'form';
+
+html {
+    font-size: 62.5%;
+    overflow: -moz-scrollbars-vertical;
+    overflow: scroll;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+}
+
+body {
+    background-color: $medium-blue;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    font-weight: $font-regular;
+    color: $white;
+    @include display(flex);
+    min-height: 100vh;
+    @include flex-direction(column);
+}
+
+*:focus {
+    outline: none;
+}
+
+header, main, footer {
+    padding: 0 3%;
+}
+
+main {
+    @include flex(1 1 auto);
+    background-image: url('/images/stitches.png');
+    background-repeat: repeat-x;
+    background-position: center bottom;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Kreon', serif;
+}

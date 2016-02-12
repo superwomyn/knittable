@@ -1,0 +1,43 @@
+%button-base {
+    font-family: inherit;
+    appearance: none;
+    display: inline-block;
+    padding: 0.75em 1.6em;
+    border: 0;
+    border-radius: 5em;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    font-size: 16px;
+    letter-spacing: 0.025em;
+    line-height: 1;
+    font-weight: $font-bold;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: all 0.1s linear;
+
+    background-color: $coral;
+    color: $white;
+
+    &:hover, &.hover, &:active, &.active {
+        text-decoration: none;
+        background-color: darken($coral, 10%);
+    }
+
+    &:disabled, &[disabled], &.disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+    }
+
+    &:not(:last-child) {
+        margin-right: 1.25em;
+    }
+}
+
+
+
+#{$all-buttons}, .button {
+    @extend %button-base;
+}

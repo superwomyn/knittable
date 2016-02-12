@@ -1,0 +1,42 @@
+.file-upload {
+    text-align: center;
+    padding: 3%;
+
+    label {
+        position: relative;
+        display: inline-block;
+        margin-top: 1px;
+        border: 1px solid $light-gray;
+        padding: 0.68em 1.6em;
+        padding-right: 12em;
+        border-radius: 5em;
+        line-height: 1;
+        cursor: pointer;
+        vertical-align: middle;
+
+        &:after {
+            content: "Select file...";
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.68em 1.6em;
+            border-radius: 5em;
+            display: inline-block;
+            background-color: $light-blue;
+            color: $dark-blue;
+        }
+    }
+
+    input[type="file"] {
+        margin-top: -2px;
+        margin-bottom: -4px;
+        cursor: pointer;
+        line-height: 1;
+        text-indent: -6em;
+    }
+
+    button {
+        margin-left: 1em;
+    }
+
+}

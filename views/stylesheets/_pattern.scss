@@ -1,0 +1,51 @@
+.pattern {
+    text-align: center;
+
+    .row {
+        padding: 1em 0;
+        margin: 0;
+        border-bottom: 1px solid $light-blue;
+        text-align: left;
+    }
+
+    .row-checkbox {
+        display: none;
+
+        & + label {
+            display: inline-block;
+            margin-right: 0.25em;
+            width: 1.5em;
+            height: 1.5em;
+            cursor: pointer;
+            border-radius: 5em;
+            border: 1px solid $light-blue;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        &:checked + label {
+            background-color: $coral;
+
+             &:after {
+                content: '\2713';
+                color: $light-blue;
+             }
+        }
+    }
+
+    span {
+        margin: 0.15em;
+    }
+
+    .row-number {
+        font-weight: $font-bold;
+    }
+
+    .stitch:not(:last-of-type):after {
+        content: ';';
+    }
+
+    .button {
+        margin: 2em auto;
+    }
+}

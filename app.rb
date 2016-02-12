@@ -1,9 +1,14 @@
 require 'sinatra'
+require 'sass'
 require 'sinatra/reloader' if development?
 require 'csv'
 
+get '/stylesheets/:stylesheet.css' do |stylesheet|
+  scss :"stylesheets/#{stylesheet}"
+end
+
 get '/' do
- "Welcome to Knittable<br><br><form action='/pattern' method='post'><input type='file' name='csv_path'/><br><input type='submit'/></form>"
+  erb :index
 end
 
 post '/pattern' do

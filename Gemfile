@@ -4,6 +4,7 @@ ruby '2.1.2'
 
 gem 'sinatra'
 
-gem 'sinatra-contrib', :group => :development
-
 gem 'sass'
+gem 'bourbon'
+
+gem 'sinatra-contrib', :group => :development

@@ -12,36 +12,36 @@ get '/' do
 end
 
 post '/pattern' do
-    output = ''
+  output = ''
+  stitch = 'knit'
+  color = 'white'
+  count = 0
+  previous_cell = 1
+  row_count = 1
+  image = ''
+  CSV.foreach(params[:csv_path]) do |row|
+    columns = row.to_a
+    columns.each do |cell|
+      if cell != previous_cell
+        output = output + "<li>Row #{row_count}: #{stitch} #{count}</li>" unless count == 0
+        if stitch == 'knit'
+          color = 'blue'
+          stitch = 'purl'
+        else
+          color = 'white'
+          stitch = 'knit'
+        end
+        count = 0
+        previous_cell = cell
+      end
+      image = image + "<div style='width:10px; height: 10px; display: inline-block; background-color: #{color};'>&nbsp;</div>"
+      count += 1
+    end
+    output = output + "<li>Row #{row_count}: #{stitch} #{count}</li>" unless count == 0
     stitch = 'knit'
-    color = 'white'
     count = 0
     previous_cell = 1
-    row_count = 1
-    image = ''
-    CSV.foreach(params[:csv_path]) do |row|
-      columns = row.to_a
-      columns.each do |cell|
-        if cell != previous_cell
-          output = output + "<li>Row #{row_count}: #{stitch} #{count}</li>" unless count == 0
-          if stitch == 'knit'
-            color = 'blue'
-            stitch = 'purl'
-          else
-            color = 'white'
-            stitch = 'knit'
-          end
-          count = 0
-          previous_cell = cell
-        end
-        image = image + "<div style='width:10px; height: 10px; display: inline-block; background-color: #{color};'>&nbsp;</div>"
-        count += 1
-      end
-      output = output + "<li>Row #{row_count}: #{stitch} #{count}</li>" unless count == 0
-      stitch = 'knit'
-      count = 0
-      previous_cell = 1
-      row_count = row_count + 1
-    end
-    "<div style='max-width:400px'>#{image}</div><ul>#{output}</ul>"
+    row_count = row_count + 1
+  end
+  "<div style='max-width:400px'>#{image}</div><ul>#{output}</ul>"
 end

@@ -10,4 +10,6 @@ gem 'bourbon'
 group :test, :development do
   gem 'sinatra-contrib'
   gem 'rspec'
+  gem 'pry'
+  gem 'pry-nav'
 end

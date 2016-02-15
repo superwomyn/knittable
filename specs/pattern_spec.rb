@@ -1,5 +1,6 @@
 require './pattern'
 require 'csv'
+require 'pry'
 
 RSpec.describe Pattern do
   describe "#generate" do
@@ -31,16 +32,16 @@ RSpec.describe Pattern do
     context 'when the data is one cell' do
       it 'returns the correct results array' do
         pattern = Pattern.new
-        pattern.data = [['1']]
-        expect(pattern.generate).to eq [[{:row=>0, :stitch=>"knit", :stitch_count=>1}]]
+        pattern.data = [['k']]
+        expect(pattern.generate).to eq [[{:row=>0, :stitch=>"k", :stitch_count=>1}]]
       end
     end
 
     # context 'when the data is one row of identical stitches' do
     #   it 'returns the correct results array' do
     #     pattern = Pattern.new
-    #     pattern.data = [%w(1, 1, 1)]
-    #     expect(pattern.generate).to eq [[{:row=>0, :stitch=>"knit", :stitch_count=>3}]]
+    #     pattern.data = [%w('k', 'k', 'k')]
+    #     expect(pattern.generate).to eq [[{:row=>0, :stitch=>"k", :stitch_count=>3}]]
     #   end
     # end
     #

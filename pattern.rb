@@ -20,7 +20,6 @@ class Pattern
         raise 'Cells must be populated with "k" (Knit) or "p" (Purl)' if cell != 'k' && cell != 'p'
         stitch_count += 1
 
-        binding.pry
         # write to results array
         results[i] = [{row: i, stitch: stitch, stitch_count: stitch_count}] if last?(j, max_columns)
 
@@ -32,6 +31,4 @@ class Pattern
   def last?(count, max)
     count == max - 1
   end
-
-
 end

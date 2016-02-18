@@ -7,9 +7,11 @@ gem 'sinatra'
 gem 'sass'
 gem 'bourbon'
 
-group :test, :development do
+group :development, :test do
   gem 'sinatra-contrib'
+  gem 'rubocop'
   gem 'rspec'
   gem 'pry'
   gem 'pry-nav'
 end
+

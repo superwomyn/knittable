@@ -54,5 +54,14 @@ RSpec.describe Pattern do
                                          {:row=>0, :stitch=>"k", :stitch_count=>1}]]
       end
     end
+
+    context 'when the data is two rows of alternating stitches' do
+      it 'returns the correct results array' do
+        pattern = Pattern.new
+        pattern.data = [%w(k k k), %w(k k k)]
+        expect(pattern.generate).to eq [[{:row=>0, :stitch=>"k", :stitch_count=>3}],
+                                         [{:row=>1, :stitch=>"p", :stitch_count=>3}]]
+      end
+    end
   end
 end

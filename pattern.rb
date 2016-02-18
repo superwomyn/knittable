@@ -7,28 +7,64 @@ class Pattern
     raise 'Path to CSV file or csv string is required' if @csv_path.nil? && @data.nil?
     @data = CSV.read(@csv_path) if @data.empty?
 
-    results = []
-    stitch = 'k'
+    output = ''
+    stitch = nil
     stitch_count = 0
+    previous_cell = 1
+    row_count = 0
+    image = ''
+    column_count = 0
+    results = []
 
     # foreach row
     @data.each_with_index do |row, i|
-      max_columns = row.length
+      columns = row.to_a
+      column_count = columns.length
 
       # foreach column
       row.each_with_index do |cell, j|
         raise 'Cells must be populated with "k" (Knit) or "p" (Purl)' if cell != 'k' && cell != 'p'
+
+        # if we're changing from one stitch to another
+        if cell != previous_cell
+          if results[row_count].nil?
+            results[row_count] = [{row: row_count, stitch: stitch, stitch_count: stitch_count}] unless stitch_count == 0
+          else
+            results[row_count].push({row: row_count, stitch: stitch, stitch_count: stitch_count}) unless stitch_count == 0
+          end
+          if stitch == 'k'
+            stitch = 'p'
+          else
+            stitch = 'k'
+          end
+          stitch_count = 0
+          previous_cell = cell
+        end
+
         stitch_count += 1
-
-        # write to results array
-        results[i] = [{row: i, stitch: stitch, stitch_count: stitch_count}] if last?(j, max_columns)
-
       end
+      if results[row_count].nil?
+        results[row_count] = [{row: row_count, stitch: stitch, stitch_count: stitch_count}] unless stitch_count == 0
+      else
+        results[row_count].push({row: row_count, stitch: stitch, stitch_count: stitch_count}) unless stitch_count == 0
+      end
+      stitch = 'knit'
+      stitch_count = 0
+      previous_cell = 1
+
+      if row_count.odd?
+        #reverse array
+        results[row_count].reverse!
+        results[row_count].each do |group|
+          if group[:stitch] == 'k'
+            group[:stitch] = 'p'
+          else
+            group[:stitch] = 'k'
+          end
+        end
+      end
+      row_count = row_count + 1
     end
     results
-  end
-
-  def last?(count, max)
-    count == max - 1
   end
 end

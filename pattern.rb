@@ -7,12 +7,13 @@ class Pattern
     raise 'Path to CSV file or csv string is required' if @csv_path.nil? && @data.nil?
     @data = CSV.read(@csv_path) if @data.empty?
 
+    raise 'CSV must contain at least one row populated with "1" or "0"' if @data.nil?
+
     output = ''
-    stitch = nil
+    stitch = 'k'
     stitch_count = 0
     previous_cell = 1
     row_count = 0
-    image = ''
     column_count = 0
     results = []
 
@@ -23,7 +24,7 @@ class Pattern
 
       # foreach column
       row.each_with_index do |cell, j|
-        raise 'Cells must be populated with "k" (Knit) or "p" (Purl)' if cell != 'k' && cell != 'p'
+        raise 'Cells must be populated with "1" or "0"' if cell != 1 && cell != 0
 
         # if we're changing from one stitch to another
         if cell != previous_cell
@@ -48,7 +49,7 @@ class Pattern
       else
         results[row_count].push({row: row_count, stitch: stitch, stitch_count: stitch_count}) unless stitch_count == 0
       end
-      stitch = 'knit'
+      stitch = 'k'
       stitch_count = 0
       previous_cell = 1
 
